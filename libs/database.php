@@ -5,26 +5,43 @@
 * @license GPL
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @link https://github.com/tecnoestrategia This source code
-* This is a Summary.A simple class to extends PDO
+* This is a Summary.A simple class to extends PDO used mixed patterns
 * Use some constants to set parameters to connect (set in config/config.inc.php)
-*
-* @todo Write to extend a simple model to change database (or databases) for write, read, cache, etc.
+* @todo May be use multiton pattern to connect two o more databases
 */
-class DataBase{
-	private $pdo
-	 public static function Connect()
+abstract class DataBase{
+	
+	  protected static $pdo = null;
+	  	  
+	   final private function Connect()
 		{
-			$pdo = new PDO('mysql:host='.host_db.';dbname='.database.';charset='.charset_db, database_user, database_pass);
+			$pdo = new PDO('mysql:host='.host_db.';dbname='.database.';charset='.charset_db, database_user, database_pass); 
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			return $pdo;
+			return $pdo;			
+		}	
+
+	  public function __CONSTRUCT(){
+			try	 {
+				if (self::$pdo === null) {
+					$this->pdo = DataBase::Connect();
+				}
+					$this->pdo = DataBase::Connect();
+			}
+			catch(Exception $e){
+				die($e->getMessage());
+			}
+		} 
+		
+	public function __wakeup(){
+        throw new Exception('Class  '.__CLASS__ . 'cannot be unserialized');
 		}
-	public function __CONSTRUCT()	{
-		try	 {
-			     $this->pdo = DataBase::Connect();
-		     }
-		catch(Exception $e){
-			die($e->getMessage());
-		  }
-	  }
+ 
+    public function __sleep(){
+        throw new Exception('Class  '.__CLASS__ . 'cannot be serialized');
+		}	
+	
+	public function __clone(){
+		throw new Exception('Class  '.__CLASS__ . 'cannot be cloned');
+		}			  
 }
 ;?>
