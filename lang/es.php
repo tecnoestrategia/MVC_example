@@ -5,9 +5,8 @@
 * @license GPL
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @link https://github.com/tecnoestrategia This source code
-* This is a simple file to set the language (Spanish in this case)
-* The propousal it's from unified the view model
-* @todo wirte a little example of template engine
+* @todo write a little example of template engine
+* @api 
 */
 define("TITLE", "Titulo");
 define("NAME", "Nombre");
