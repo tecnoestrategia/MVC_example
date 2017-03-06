@@ -26,11 +26,11 @@ class indexController{
     }
 
     public function Index(){
-		$GeneralData = $this->model->ShowId(1);/*Metohd from the model class (app/model/entity.php) */
-		$ShowNameOf = $this->model->ShowAll();/*Metohd from the model class (app/model/entity.php) */
+	$GeneralData = $this->model->ShowId(1);/*Metohd from the model class (app/model/entity.php) */
+	$ShowNameOf = $this->model->ShowAll();/*Metohd from the model class (app/model/entity.php) */
         require_once 'app/view/header.php';
         require_once 'app/view/index/menu.php';
-				require_once 'app/view/index/index.php';
+	require_once 'app/view/index/index.php';
         require_once 'app/view/footer.php';
 
     }
@@ -41,11 +41,11 @@ class indexController{
 	*/
 	public function GetById(){
 		if(isset($_REQUEST['id'])){
-            $ShowData = $this->model->ShowId($_REQUEST['id']);/*Metohd from the model class (app/model/entity.php) */
-        }
+            		$ShowData = $this->model->ShowId($_REQUEST['id']);/*Metohd from the model class (app/model/entity.php) */
+        	}
         require_once 'app/view/header.php';
         require_once 'app/view/index/menu.php';
-				require_once 'app/view/index/details.php';
+	require_once 'app/view/index/details.php';
         require_once 'app/view/footer.php';
 
     }
