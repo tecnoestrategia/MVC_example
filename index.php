@@ -1,7 +1,6 @@
 <?php
 /**
-* This is a Summary.A simple index file to set MVC pattern
-*
+* A simple index file to set MVC pattern.
 * Use some constants to set parameters like bd, url, language, etc (set in config/config.inc.php)
 */
 /**
@@ -17,7 +16,6 @@
 */
   require_once 'config/config.inc.php';
   $controller = 'index';
-
   if(!isset($_REQUEST['c']))
 	{
 		require_once "app/controller/$controller.php";
@@ -29,11 +27,9 @@
 	{
 		$controller = strtolower($_REQUEST['c']);
 		$action = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Index';
-
 		require_once "app/controller/$controller.php";
 		$controller = ucwords($controller) . 'Controller';
 		$controller = new $controller;
-
 		call_user_func(array($controller,$action));
 	}
 ;?>
