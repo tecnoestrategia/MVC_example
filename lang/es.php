@@ -1,12 +1,14 @@
 <?php
 /**
+* Constant to ES_es spanish language
+*/
+/**
 * @author TecnoEstrategia <develop@tecnoestrategia.com>
 * @copyright TecnoEstrategia
 * @license GPL
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @link https://github.com/tecnoestrategia This source code
 * @todo write a little example of template engine
-* @api 
 */
 define("TITLE", "Titulo");
 define("NAME", "Nombre");
@@ -21,4 +23,7 @@ define("MENU_HOME", "Inicio");
 define("MENU_ABOUT", "Que es esto");
 define("MENU_CONTACT", "Contacto");
 define("MENU_EXTRAS", "Extras");
+define("MENU_EXTRAS_MODEL", "Modelo");
+define("MENU_EXTRAS_VIEW", "Vista");
+define("MENU_EXTRAS_CONTROLLER", "Controlador");
 ?>
