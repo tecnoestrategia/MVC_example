@@ -1,0 +1,13 @@
+/* --------------------------------------------------------- */
+/* For extra pieces of some element - RESPECT Boostrap model */
+/* ----------------------------------------------------------*/
+book {
+  border:0.1em #000 !important;
+  border-radius:0.1em !important;
+  box-shadow:0 0 1px #000 !important;
+}
+book img {
+  margin:0 0.5em 0.1em 0;
+  box-shadow:0 0 1px 1px black;
+  border:0.1em #fff;
+}
