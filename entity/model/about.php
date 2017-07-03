@@ -5,7 +5,7 @@
 * @copyright TecnoEstrategia
 * @license GPL
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @link https://github.com/tecnoestrategia This source code 
+* @link https://github.com/tecnoestrategia This source code
 **/
 namespace TE\entity;
 class about {
@@ -14,4 +14,3 @@ class about {
   return $ShowPageData->ShowPage(2);
 	}
 }
-;?>

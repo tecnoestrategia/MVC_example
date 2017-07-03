@@ -11,3 +11,11 @@ book img {
   box-shadow:0 0 1px 1px black;
   border:0.1em #fff;
 }
+.transparent {
+    background-color: transparent !important;
+    box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+ }
+ .left-border-none {
+    border-left:none !important;
+    box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+ }

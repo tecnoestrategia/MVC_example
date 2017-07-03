@@ -1,42 +1,46 @@
 -- --------------------------------------------------------
--- Host:                         172.16.10.41
--- Versión del servidor:         5.7.15 - MySQL Community Server (GPL)
--- SO del servidor:              Linux
--- HeidiSQL Versión:             9.4.0.5125
+-- Host:                         172.16.40.62
+-- Versión del servidor:         5.6.25 - MySQL Community Server (GPL)
+-- SO del servidor:              Debian 8
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
 
 -- Volcando estructura de base de datos para mvctest
 CREATE DATABASE IF NOT EXISTS `mvctest` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
 USE `mvctest`;
+
 
 -- Volcando estructura para tabla mvctest.author
 CREATE TABLE IF NOT EXISTS `author` (
   `id_author` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique id of book',
   `name` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'The title of book',
   `id_country` int(11) NOT NULL COMMENT 'The id of country was born',
-  `alive` tinyint(4) NOT NULL COMMENT 'If the author is alive or not',
   `born_data` date NOT NULL COMMENT 'Data of born',
+  `death_data` date DEFAULT NULL COMMENT 'Data of died',
   `bio` text COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Bio and description of author',
   `photo` varchar(50) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Photo of author',
   PRIMARY KEY (`id_author`),
   UNIQUE KEY `id_pattern` (`id_author`),
   KEY `FK_author_countrys` (`id_country`),
   CONSTRAINT `FK_author_countrys` FOREIGN KEY (`id_country`) REFERENCES `countrys` (`id_country`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci ROW_FORMAT=DYNAMIC COMMENT='Anothe entity, in this case books';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci ROW_FORMAT=DYNAMIC COMMENT='Anothe entity, in this case books';
 
--- Volcando datos para la tabla mvctest.author: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla mvctest.author: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `author` DISABLE KEYS */;
-INSERT INTO `author` (`id_author`, `name`, `id_country`, `alive`, `born_data`, `bio`, `photo`) VALUES
-	(1, 'Andrew Hodges', 1, 1, '1970-06-23', '<p>Hodges was born in London. Since the early 1970s, Hodges has worked on twistor theory, which is the approach to the problems of fundamental physics pioneered by Roger Penrose. He was also involved in gay liberation movement these times.</p>\r\n<p>Hodges is best known as the author of Alan Turing: The Enigma, the story of the British computer pioneer and codebreaker Alan Turing. Critically acclaimed at the time — Donald Michie in New Scientist called it "marvellous and faithful" — the book was chosen by Michael Holroyd as part of a list of 50 \'essential\' books (that were currently available in print) in The Guardian, 1 June 2002.</p>\r\n<p>Hodges is also the author of works that popularize science and mathematics.</p>\r\n<p>He is a Tutorial Fellow in mathematics at Wadham College, Oxford University. Having taught at Wadham since 1986, Hodges was elected a Fellow in 2007, and was appointed Dean from start of the 2011/2012 academic year.</p>', 'andrewhodges.jpg'),
-	(2, 'Isaac Asimov', 2, 0, '1919-04-11', '<p>He was an American writer and professor of biochemistry at Boston University. He was known for his works of science fiction and popular science. Asimov was a prolific writer, and wrote or edited more than 500 books and an estimated 90,000 letters and postcards.His books have been published in 9 of the 10 major categories of the Dewey Decimal Classification.</p>\r\n<p>Asimov wrote hard science fiction and, along with Robert A. Heinlein and Arthur C. Clarke, he was considered one of the "Big Three" science fiction writers during his lifetime. Asimov\'s most famous work is the Foundation Series; his other major series are the Galactic Empire series and the Robot series. The Galactic Empire novels are explicitly set in earlier history of the same fictional universe as the Foundation series. Later, beginning with Foundation\'s Edge, he linked this distant future to the Robot and Spacer stories, creating a unified "future history" for his stories much like those pioneered by Robert A. Heinlein and previously produced by Cordwainer Smith and Poul Anderson.[7] He wrote hundreds of short stories, including the social science fiction "Nightfall", which in 1964 was voted by the Science Fiction Writers of America the best short science fiction story of all time. Asimov wrote the Lucky Starr series of juvenile science-fiction novels using the pen name Paul French.</p>\r\n<p>Asimov also wrote mysteries and fantasy, as well as much nonfiction. Most of his popular science books explain scientific concepts in a historical way, going as far back as possible to a time when the science in question was at its simplest stage. He often provides nationalities, birth dates, and death dates for the scientists he mentions, as well as etymologies and pronunciation guides for technical terms. Examples include Guide to Science, the three-volume set Understanding Physics, and Asimov\'s Chronology of Science and Discovery, as well as works on astronomy, mathematics, history, William Shakespeare\'s writing, and chemistry.</p>\r\n<p>Asimov was a long-time member and vice president of Mensa International, albeit reluctantly; he described some members of that organization as "brain-proud and aggressive about their IQs".He took more joy in being president of the American Humanist Association.The asteroid 5020 Asimov, a crater on the planet Mars, a Brooklyn elementary school, and a literary award are named in his honor.</p>', 'isaacasimov.jpg');
+INSERT INTO `author` (`id_author`, `name`, `id_country`, `born_data`, `death_data`, `bio`, `photo`) VALUES
+	(1, 'Andrew Hodges', 1, '1970-06-23', NULL, '<p>Hodges was born in London. Since the early 1970s, Hodges has worked on twistor theory, which is the approach to the problems of fundamental physics pioneered by Roger Penrose. He was also involved in gay liberation movement these times.</p>\r\n<p>Hodges is best known as the author of Alan Turing: The Enigma, the story of the British computer pioneer and codebreaker Alan Turing. Critically acclaimed at the time — Donald Michie in New Scientist called it "marvellous and faithful" — the book was chosen by Michael Holroyd as part of a list of 50 \'essential\' books (that were currently available in print) in The Guardian, 1 June 2002.</p>\r\n<p>Hodges is also the author of works that popularize science and mathematics.</p>\r\n<p>He is a Tutorial Fellow in mathematics at Wadham College, Oxford University. Having taught at Wadham since 1986, Hodges was elected a Fellow in 2007, and was appointed Dean from start of the 2011/2012 academic year.</p>', 'andrewhodges.jpg'),
+	(2, 'Isaac Asimov', 2, '1919-04-11', '1992-04-06', '<p>He was an American writer and professor of biochemistry at Boston University. He was known for his works of science fiction and popular science. Asimov was a prolific writer, and wrote or edited more than 500 books and an estimated 90,000 letters and postcards.His books have been published in 9 of the 10 major categories of the Dewey Decimal Classification.</p>\r\n<p>Asimov wrote hard science fiction and, along with Robert A. Heinlein and Arthur C. Clarke, he was considered one of the "Big Three" science fiction writers during his lifetime. Asimov\'s most famous work is the Foundation Series; his other major series are the Galactic Empire series and the Robot series. The Galactic Empire novels are explicitly set in earlier history of the same fictional universe as the Foundation series. Later, beginning with Foundation\'s Edge, he linked this distant future to the Robot and Spacer stories, creating a unified "future history" for his stories much like those pioneered by Robert A. Heinlein and previously produced by Cordwainer Smith and Poul Anderson.[7] He wrote hundreds of short stories, including the social science fiction "Nightfall", which in 1964 was voted by the Science Fiction Writers of America the best short science fiction story of all time. Asimov wrote the Lucky Starr series of juvenile science-fiction novels using the pen name Paul French.</p>\r\n<p>Asimov also wrote mysteries and fantasy, as well as much nonfiction. Most of his popular science books explain scientific concepts in a historical way, going as far back as possible to a time when the science in question was at its simplest stage. He often provides nationalities, birth dates, and death dates for the scientists he mentions, as well as etymologies and pronunciation guides for technical terms. Examples include Guide to Science, the three-volume set Understanding Physics, and Asimov\'s Chronology of Science and Discovery, as well as works on astronomy, mathematics, history, William Shakespeare\'s writing, and chemistry.</p>\r\n<p>Asimov was a long-time member and vice president of Mensa International, albeit reluctantly; he described some members of that organization as "brain-proud and aggressive about their IQs".He took more joy in being president of the American Humanist Association.The asteroid 5020 Asimov, a crater on the planet Mars, a Brooklyn elementary school, and a literary award are named in his honor.</p>', 'isaacasimov.jpg'),
+	(4, 'Arturo Perez Reverte', 0, '1951-11-25', NULL, '<p>Novelist and former journalist Arturo Pérez-Reverte Gutiérrez was born in Cartagena, Spain on November 25, 1951. He started his journalistic career writing for the Spanish newspaper Pueblo and later for Television Espanola - the Spanish state owned television, in the role of war correspondant. He worked as a war correspondent from 1973 to1994 before becoming a full-time writer. His first novel, El húsar, which was set in the Napoleonic Wars, was published in 1986, and he is well-known internationally for his popular Captain Alatriste fiction series, which takes place in 17th-century Europe. Pérez-Reverte has been elected to the Spanish Royal Academy</p>', 'perezreverte.jpg'),
+	(5, 'Carl Sagan', 3, '1934-11-09', '1996-12-22', '<p>Carl Sagan was an American astronomer, cosmologist, astrophysicist, astrobiologist, author, science popularizer, and science communicator in astronomy and other natural sciences. He is best known for his work as a science popularizer and communicator. His best known scientific contribution is research on extraterrestrial life, including experimental demonstration of the production of amino acids from basic chemicals by radiation.</p>\r\n<p>Sagan assembled the first physical messages sent into space: the Pioneer plaque and the Voyager Golden Record, universal messages that could potentially be understood by any extraterrestrial intelligence that might find them. Sagan argued the now accepted hypothesis that the high surface temperatures of Venus can be attributed to and calculated using the greenhouse effect.</p>', '-838f14a8149909452271917233710427272.jpg'),
+	(6, 'Lionel Terray', 4, '1921-07-25', '1967-09-25', '<p>Lionel Terray was a French climber who made many first ascents, including Makalu in the Himalaya (with Jean Couzy on 15 May 1955) and Cerro Fitzroy in the Patagonian Andes.</p>\r\n<p>A climbing guide and ski instructor, Terray was active in mountain combat against Germany during World War II. After the war, he became well known as one of the best Chamonix climbers and guides, noted for his speedy ascents of some of the most notorious climbs in the French, Italian, and Swiss Alps: the Walker Spur of the Grandes Jorasses, the south face of the Aiguille Noire de Peuterey, the north-east face of Piz Badile, and the north face of the Eiger. Terray, frequently with climbing partner Louis Lachenal, broke previous climbing speed records.</p>', 'lionelterray.jpg'),
+	(7, 'Maurice Herzog', 4, '1919-01-15', '2013-12-12', '<p>Maurice Herzog was a French mountaineer and administrator who was born in Lyon, France. He led the expedition that first climbed a peak over 8000m, Annapurna, in 1950, and reached the summit with Louis Lachenal. Upon his return, he wrote a best-selling book about the expedition.</p>\r\n<p>Herzog’s account of the expedition was published first in 1951 in French, then in English in 1952 under the title Annapurna. The book has sold over 11 million copies as of 2000, more than any other mountaineering title. Ending with the stirring line “there are other Annapurnas in the lives of men” (in the context of the book, an exhortation to answer the challenges that life offers), the book gave an account of the expedition that established Herzog’s climbing reputation and inspired a generation of mountaineers.</p>', 'mauriceherzog.jpg'),
+	(8, 'Federico García Lorca', 0, '1898-07-05', '1936-09-19', '<p>García Lorca achieved international recognition as an emblematic member of the Generation of \'27, a group consisting of mostly poets who introduced the tenets of European movements (such as symbolism, futurism, and surrealism) into Spanish literature. He was executed by Nationalist forces at the beginning of the Spanish Civil War.</p>\r\n<p>His body has never been found. In 2008, a Spanish judge opened an investigation into Lorca\'s death. The García Lorca family eventually dropped objections to the excavation of a potential gravesite near Alfacar, but no human remains were found.</p>\r\n', 'garcialorca.jpg');
 /*!40000 ALTER TABLE `author` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla mvctest.books
 CREATE TABLE IF NOT EXISTS `books` (
@@ -55,17 +59,31 @@ CREATE TABLE IF NOT EXISTS `books` (
   KEY `FK_books_author` (`id_author`),
   CONSTRAINT `FK_book_categories` FOREIGN KEY (`id_category`) REFERENCES `book_categories` (`id_category`),
   CONSTRAINT `FK_books_author` FOREIGN KEY (`id_author`) REFERENCES `author` (`id_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Anothe entity, in this case books';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Anothe entity, in this case books';
 
--- Volcando datos para la tabla mvctest.books: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla mvctest.books: ~18 rows (aproximadamente)
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 INSERT INTO `books` (`id_book`, `description`, `title`, `id_category`, `number_of_pages`, `isbn`, `id_author`, `year`, `photo`) VALUES
-	(1, '<p>It is only a slight exaggeration to say that the British mathematician Alan Turing (1912-1954) saved the Allies from the Nazis, invented the computer and artificial intelligence, and anticipated gay liberation by decades--all before his suicide at age forty-one. This classic biography of the founder of computer science, reissued on the centenary of his birth with a substantial new preface by the author, is the definitive account of an extraordinary mind and life. A gripping story of mathematics, computers, cryptography, and homosexual persecution, Andrew Hodges\'s acclaimed book captures both the inner and outer drama of Turing\'s life.</p>\r\n<p>Hodges tells how Turing\'s revolutionary idea of 1936--the concept of a universal machine--laid the foundation for the modern computer and how Turing brought the idea to practical realization in 1945 with his electronic design. The book also tells how this work was directly related to Turing\'s leading role in breaking the German Enigma ciphers during World War II, a scientific triumph that was critical to Allied victory in the Atlantic. At the same time, this is the tragic story of a man who, despite his wartime service, was eventually arrested, stripped of his security clearance, and forced to undergo a humiliating treatment program--all for trying to live honestly in a society that defined homosexuality as a crime</p>', 'Alan Turing: The Enigma', 1, 586, '9780691155647', 1, '2012', '9780691155647.jpg'),
+	(1, '                                        <p>It is only a slight exaggeration to say that the British mathematician Alan Turing (1912-1954) saved the Allies from the Nazis, invented the computer and artificial intelligence, and anticipated gay liberation by decades--all before his suicide at age forty-one. This classic biography of the founder of computer science, reissued on the centenary of his birth with a substantial new preface by the author, is the definitive account of an extraordinary mind and life. A gripping story of mathematics, computers, cryptography, and homosexual persecution, Andrew Hodges\'s acclaimed book captures both the inner and outer drama of Turing\'s life.</p>\r\n<p>Hodges tells how Turing\'s revolutionary idea of 1936--the concept of a universal machine--laid the foundation for the modern computer and how Turing brought the idea to practical realization in 1945 with his electronic design. The book also tells how this work was directly related to Turing\'s leading role in breaking the German Enigma ciphers during World War II, a scientific triumph that was critical to Allied victory in the Atlantic. At the same time, this is the tragic story of a man who, despite his wartime service, was eventually arrested, stripped of his security clearance, and forced to undergo a humiliating treatment program--all for trying to live honestly in a society that defined homosexuality as a crime</p>                                    ', 'Alan Turing: The Enigma', 1, 586, '9780691155647', 1, '2012', '9780691155647.jpg'),
 	(2, '<p>In this fascinating and enlightening new book, Dr. Andrew G. Hodges conducts an imaginary interview with the most influential person in history, Jesus Christ. A psychologist and a Christian, Dr. Hodges draws on his professional background and a profound knowledge of Scripture to "interview" Jesus on a fascinating variety of the most provocative and challenging topics from his life and teachings.</p>\r\n<p>Jesus\' candid answers to these and many other questions give readers added insight and a clearer understanding of His timeless message. From this "first-hand" account of Jesus Christ\'s remarkable life emerges a truly human portrait of Jesus-both as man and God. Moving and unforgettable, "Jesus: " An Interview Across Time adds a powerful, surprising new dimension to the greatest story every told.</p>', 'Jesus: An Interview Across Time', 1, 432, '9780553274257', 1, '1988', '9780553274257.jpg'),
 	(3, '<p>The history of a small, semicivilized tribe who rose from obscurity and in 500 years created the greatest and most peaceful empire in the Western world</p>', 'The roman republic', 1, 277, '9780786900109', 2, '1967', 'roman_republic_asimov.jpg'),
 	(7, '<p>Gladia Delmarre\'s homeworld, the Spacer planet Solaria, has been abandoned - by its human population. Countless robots remain there. And when traders from Settler worlds attempt to salvage them, the robots of Solaria turn to killing ... in defiance of the Three Laws of Robotics. Pax Robotica Long ago, Gladia\'s robots Daneel and Giskard played a vital role in opening the worlds beyond the Solar system to Settlers from Earth. Now the conscience-stricken robots are faced with an even greater challenge. Either the sacred Three Laws of Robotics are in ruins - or a new, superior Law must be established to bring peace to the galaxy. With Madam Gladia and D.G. Baley - the captain of the Settler traders and a descendant of the robots\' friend Elijah Baley - Daneel and Giskard travel to the robot stronghold of Solaria ... where they uncover a sinister Spacer plot to destroy Earth itself.</p>', 'Robots and empire', 2, 508, '9780586062005', 2, '1986', '9780586062005.jpg'),
-	(8, '<p>A millennium into the future two advancements have altered the course of human history:  the colonization of the galaxy and the creation of the positronic brain.  Isaac Asimov\'s Robot novels chronicle the unlikely partnership between a New York City detective and a humanoid robot who must learn to work together.  Like most people left behind on an over-populated Earth, New York City police detective Elijah Baley had little love for either the arrogant Spacers or their robotic companions.  But when a prominent Spacer is murdered under mysterious circumstances, Baley is ordered to the Outer Worlds to help track down the killer.  The relationship between Life and his Spacer superiors, who distrusted all Earthmen, was strained from the start.  Then he learned that they had assigned him a partner:  R. Daneel Olivaw.  Worst of all was that the "R" stood for robot--and his positronic partner was made in the image and likeness of the murder victim!</p>', 'Caves of steel', 2, 288, '9780307792419', 2, '2011', '9780307792419.jpg');
+	(8, '<p>A millennium into the future two advancements have altered the course of human history:  the colonization of the galaxy and the creation of the positronic brain.  Isaac Asimov\'s Robot novels chronicle the unlikely partnership between a New York City detective and a humanoid robot who must learn to work together.  Like most people left behind on an over-populated Earth, New York City police detective Elijah Baley had little love for either the arrogant Spacers or their robotic companions.  But when a prominent Spacer is murdered under mysterious circumstances, Baley is ordered to the Outer Worlds to help track down the killer.  The relationship between Life and his Spacer superiors, who distrusted all Earthmen, was strained from the start.  Then he learned that they had assigned him a partner:  R. Daneel Olivaw.  Worst of all was that the "R" stood for robot--and his positronic partner was made in the image and likeness of the murder victim!</p>', 'Caves of steel', 2, 288, '9780307792419', 2, '2011', '9780307792419.jpg'),
+	(9, 'Lost treasure, love, and betrayal on the high seas - an extraordinary novel by the master of mystery and suspense.Coy is a suspended sailor with time on his hands, a mariner without a ship. While attending a maritime auction in Barcelona, he meets a beautiful woman who immediately captures his imagination. Tanger Soto, who works for the naval museum in Madrid, is obsessed with Dei Gloria, a Jesuit ship sunk by pirates in the seventeenth century, and now - she hopes - resting on the bottom of the sea off the southern coast of Spain. Tanger uses her imaginative skills with men and her expertise with documents, atlases, and nautical maps to chart the search for lost treasure. Coy is quickly drawn into the search, and before long finds himself falling in love. As these lively characters follow the course of past sailors, their own journey becomes perilous. Are there secrets dwelling in the depths of the sea? And what of the depths of the heart? This highly intelligent and meticulously plotted novel combines the richness of atmosphere we have come to expect from Perez-Reverte with the romance and mystery of the sea found in the novels of Melville, Conrad, and O\'Brian. An unforgettable adventure. \'A classic of its genre, equal to the best of Eric Ambler and Patrick O\'Brian - and, beyond genre, not far below the levels and depths plumbed by Melville and Conrad themselves . . . In a virtually perfect fusion of absorbing action and precise, intricate characterisation, Perez-Reverte magically sustains the tension and suspense over a span of almost 500 pages\' Kirkus Reviews', 'The nautical chart', 14, 464, '9780330486170', 4, '2002', '9780330486170.jpg'),
+	(10, 'Lucas Corso is a book detective, a middle-aged mercenary hired to hunt down rare editions for wealthy and unscrupulous clients. When a well-known bibliophile is found dead, leaving behind part of the original manuscript of Alexandre Dumas\'sThe Three Musketeers, Corso is brought in to authenticate the fragment. He is soon drawn into a swirling plot involving devil worship, occult practices, and swashbuckling derring-do among a cast of characters bearing a suspicious resemblance to those of Dumas\'s masterpiece. Aided by a mysterious beauty named for a Conan Doyle heroine, Corso travels from Madrid to Toledo to Paris on the killer\'s trail in this twisty intellectual romp through the book world.', 'The club dumas', 14, 362, '9780156032834', 4, '2006', '9780156032834.jpg'),
+	(11, 'Cosmos is one of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like blue world inhabited by a life form that is just beginning to discover its own identity and to venture into the vast ocean of space. Cosmos retraces the fourteen billion years of cosmic evolution that have transformed matter into consciousness, exploring such topics as the origin of life, the human brain, Egyptian hieroglyphics, spacecraft missions, the death of the Sun, the evolution of galaxies, and the forces and individuals who helped to shape modern science', 'Cosmos', 13, 352, '9780307800985', 5, '1980', '9780307800985.jpg'),
+	(12, 'In the final book of his astonishing career, Carl Sagan brilliantly examines the burning questions of our lives, our world, and the universe around us. These luminous, entertaining essays travel both the vastness of the cosmos and the intimacy of the human mind, posing such fascinating questions as how did the universe originate and how will it end, and how can we meld science and compassion to meet the challenges of the coming century? Here, too, is a rare, private glimpse of Sagan\'s thoughts about love, death, and God as he struggled with fatal disease. Ever forward-looking and vibrant with the sparkle of his unquenchable curiosity, Billions & Billions is a testament to one of the great scientific minds of our day.', 'Billions & Billions', 13, 320, '9780307801029', 5, '1991', '9780307801029.jpg'),
+	(13, 'In 1973, Carl Sagan published The Cosmic Connection, a daring view of the universe, which rapidly became a classic work of popular science and inspired a generation of scientists and enthusiasts. This seminal work is reproduced here for a whole new generation to enjoy. In Sagan\'s typically lucid and lyrical style, he discusses many topics from astrophysics and solar system science, to colonization, terraforming and the search for extraterrestrials. Sagan conveys his own excitement and wonder, and relates the revelations of astronomy to the most profound human problems and concerns: issues that are just as valid today as they were thirty years ago. New to this edition are Freeman Dyson\'s comments on Sagan\'s vision and the importance of the work, Ann Druyan\'s assessment of Sagan\'s cultural significance as a champion of science, and David Morrison\'s discussion of the advances made since 1973 and what became of Sagan\'s predictions. Who knows what wonders this third millennium will reveal, but one thing is certain: Carl Sagan played a unique role in preparing us for them', 'Cosmic connection', 13, 302, '9780521783033', 5, '1973', '9780521783033.jpg'),
+	(14, '<p>Though a well-regarded physicist Carl Sagan (1934-1996) is best-known as a writer of popular nonfiction and science fiction and as the host of the PBS series Cosmos. Through his writings and spoken commentary, he worked to popularize interests in astronomy, the universe, and the possibility of extraterrestrial life. From the beginning of his public career, when he co-wrote Intelligent Life in the Universe to the very end as he worked on the 1997 film adaptation of his novel Contact, these subjects absorbed him.</p>\r\n<p>This interest in space was rooted in his understanding of the smallness and vulnerability of humanity measured against the immense size and power of the universe. This profound philosophical humility, mixed with personal exuberance, comes through in Conversations with Carl Sagan. In interviews and profiles, Sagan discusses with verve a wide variety of topics--the environment, nuclear disarmament, religion, politics, extraterrestrial life, astronomy, physics, robotics. Whether he is discussing his science fiction or his well-researched nonfiction works, his voice embraces reason and skepticism</p>', 'Conversations with Carl Sagan', 5, 167, '9781578067367', 5, '2006', '9781578067367.jpg'),
+	(16, ' \'I have given my whole life to the mountains. Born at the foot of the Alps, I have been a ski champion, a professional guide, an amateur of the greatest climbs in the Alps and a member of eight expeditions to the Andes and the Himalayas. If the word has any meaning at all, I am a mountaineer.\' So Terray begins Conquistadors of the Useless- not with arrogance, but with typical commitment. One of the most colourful characters of the mountaineering world, his writing is true to his uncompromising and jubilant love for the mountains. Terray was one of the greatest alpinists of his time, and his autobiography is one of the finest and most important mountaineering books ever written. Climbing with legends Gaston Rébuffat, Maurice Herzog and Louis Lachenal, Terray made first ascents in the Alps, Alaska, the Andes, and the Himalaya. He was at the centre of global mountaineering at a time when Europe was emerging from the shadow of World War II, and he came out a hero. Conquistadors tells of his war-time escapades, of life as an Alpine mountain guide, and of his climbs - including the second ascent of the Eiger North Face and his involvement in the first ever ascent of an 8,000-metre peak, Annapurna. His tales capture the energy of French post-war optimism, a time when France needed to re-assert herself and when climbing triumphs were more valued than at any other time in history. Terray\'s death, in the Vercors, robbed mountaineering of one of its most passionate and far-sighted figures. His energy, so obvious in Conquistadors of the Useless, will inspire for generations to come. A mountaineering classic                  ', 'Conquistadors of the Useless', 14, 303, '9781910240175', 6, '1987', '9781910240175.jpg'),
+	(17, '<p>In 1950, no mountain higher than 8,000 meters had ever been climbed. Maurice Herzog and other members of the French Alpine Club resolved to try. This is the enthralling story of the first conquest of Annapurna and the harrowing descent. With breathtaking courage and grit manifest on every page, Annapurna is one of the greatest adventure stories ever told.\r\n<br/>\r\nAs well as an introduction by Joe Simpson, this new edition includes 16 pages of photographs, which provide a remarkable visual record of this legendary expedition.</p>\r\n\r\n<p>The distinguished French mountaineer Maurice Herzog was leader of the 1950 expedition to Annapurna. He was one of the two climbers to reach the summit.</p>', 'Annapurna', 14, 272, '9781409077275', 7, '2010', '9781409077275.jpg'),
+	(22, 'This was Isaac Asimov\'s first collection of robot short stories, first published in magazines during the 1940s and collected into book form in the early 1950s. The stories are linked together through a narrative involving a young journalist interviewing Doctor Susan Calvin, a key figure in the history of early robotics in Asimov\'s fictional universe. The stories all concern aspects of the Three Laws of Robotics, and the problems they throw up and the issues humans have to face in solving them. This description probably makes them sound a bit dry, but they\'re good little stories for the most part in the ideas they throw up and the logical paradoxes that form their bases, though some of the characters, especially Powell and Donovan, who feature in many of them, come across as rather ludicrous and stereotyped from a modern viewpoint. This is a classic collection of stories in the genre, from the era often called the Golden Era of science fiction, when the magazines containing such stories as these prevailed over full length novels', 'I, Robot', 2, 224, '9780553382563', 2, '1950', '-bb1662b7149451754991643371610516878.jpg'),
+	(23, '<p>Volume one traces the theoretical exploration of these concepts from an essentially Newtonian viewpoint. Newton\'s great achievement was in synthesizing the laws of motion and energy and in developing a unifying theory of universal gravitation. Concepts now considered common knowledge were at the time seen as so far fetched that even Newton himself felt that, although they must obey the natural laws he discovered, "angels" were required to move everything. The second volume views the development of these concepts from the viewpoint of the 19th century, when much of the theoretical work of physics was being transformed into the practical technology of the Industrial Revolution. Physics was the intellectual fuel of industrialization.</p>\r\n<p> The author also shows how the development of 19th century physics led to the Second Scientific Revolution of Einstein\'s Relativity and Plank\'s Quantum Theory. In the final volume, he deals with a central concern of 20th century physics -- the description of the infinitesimally small particles and waves that constitute the very fabric of the universe. The quest takes us to the frontiers of physics today where physicists speculate about the birth and boundaries of the universe, instantaneous particle communication and even other dimensions which may describe parallel realities</p>', ' Understanding Physics', 13, 768, '9780880292511', 2, '1993', '-ba9a56ce149451772082883132210412508.jpg'),
+	(24, ' Although the life of Federico García Lorca (1898–1936) was tragically brief, the Spanish poet and dramatist created an enduring body of work of international importance. This selection of 55 poems from a 1921 collection represents some of García Lorca\'s finest work. Imbued with Andalusian folklore, rich in metaphor and complex spirituality, they attest to the poet\'s popularity as one of Spain\'s most widely read authors.                  ', '  Book of Poems', 15, 159, '9780486436500', 8, '2005', '-894a200a149451940544972162510901882.jpg'),
+	(25, 'The Selected Poems of Federico García Lorca has introduced generations of American readers to mesmerizing poetry since 1955. Lorca (1898-1937) is admired all over the world for the lyricism, immediacy and clarity of his poetry, as well as for his ability to encompass techniques of the symbolist movement with deeper psychological shadings. But Lorca\'s poems are, most of all, admired for their beauty. Undercurrents of his major influences--Spanish folk traditions from his native Andalusia and Granada, gypsy ballads, and his friends the surrealists Salvador Dali and Luis Buñuel--stream throughout Lorca\'s work. Poets represented here as translators are as diverse as Stephen Spender, Langston Hughes, Ben Belitt, William Jay Smith, and W.S. Merwin.                  ', ' The Selected Poems', 15, 186, '9780811216227', 8, '2004', '-9ba196c7149451948893915326411075912.jpg'),
+	(26, 'Cosmos, the widely acclaimed book and television series by Carl Sagan and Ann Druyan, was about where we are in the vastness of space and time. Shadows of Forgotten Ancestors is an exploration of who we are. How were we shaped by life\'s adventure on this planet, by a mysterious past that we are only just beginning to piece together? "We humans are like a newborn baby left on a doorstep, " they write, "with no note explaining who it is, where it came from, what hereditary cargo of attributes and disabilities it might be carrying, or who its antecedents might be." This book is one version of the orphan\'s file. Sagan and Druyan take us back to the birth of the Sun and its planets and the first stirrings of life; to the origins of traits central to our current predicament: sex and violence, love and altruism, hierarchy, consciousness, language, technology, and morality. Many thoughtful people fear that our problems have become too big for us, that we are for reasons at the heart of human nature unable to deal with them, that we have lost our way. How did we get into this mess? How can we get out? Why are we so quick to mistrust those different from ourselves, so given to unquestioning obedience to authority? What is male and female? Why are we so anxious to distance ourselves from the other animals? What obligations, if any, do we owe to them? Is there something within us that condemns us to selfishness and violence? When Sagan and Druyan first undertook this exploration it was "almost with a sense of dread. We found instead reason for hope." This book presents important ideas with the clarity for which the authors are famous. Daring, passionate, with a breathtaking sweep. Shadows is a quest for a new perspective - one that integrates the insights of science into a vision of where we came from, who we are, and what our fate might be.                                                                                                                                                                                                                                                ', 'Shadows of Forgotten Ancestors', 13, 505, '9780345384720', 5, '1993', '-b5d62aa6149632031654107255110516187.jpg');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla mvctest.book_categories
 CREATE TABLE IF NOT EXISTS `book_categories` (
@@ -76,25 +94,24 @@ CREATE TABLE IF NOT EXISTS `book_categories` (
   UNIQUE KEY `id_categorie` (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='The categories of books';
 
--- Volcando datos para la tabla mvctest.book_categories: ~16 rows (aproximadamente)
+-- Volcando datos para la tabla mvctest.book_categories: ~15 rows (aproximadamente)
 /*!40000 ALTER TABLE `book_categories` DISABLE KEYS */;
 INSERT INTO `book_categories` (`id_category`, `title`, `description`) VALUES
 	(1, 'History', 'History refer to the academic discipline which uses a narrative to examine and analyse a sequence of past events, and objectively determine the patterns of cause and effect that determine them'),
-	(2, 'Scfi', 'Science fiction (often shortened to SF, sci-fi or scifi) is a genre of speculative fiction, typically dealing with imaginative concepts such as futuristic science and technology, space travel, time travel, faster than light travel, parallel universes, and extraterrestrial life. Science fiction often explores the potential consequences of scientific and other innovations, and has been called a "literature of ideas.'),
+	(2, 'Scfi', 'Science fiction (often shortened to SF, sci-fi or scifi) is a genre of speculative fiction, typically dealing with imaginative concepts such as futuristic science and technology, space travel, time travel, faster than light travel, parallel universes, and extraterrestrial life. Science fiction often explores the potential consequences of scientific and other innovations, and has been called a literature of ideas.                  '),
 	(3, 'Biographies', 'A biography, or simply bio, is a detailed description of a person\'s life. It involves more than just the basic facts like education, work, relationships, and death; it portrays a person\'s experience of these life events.'),
 	(4, 'Fantasy', 'Fiction with strange or otherworldly settings or characters; fiction which invites suspension of reality'),
-	(5, 'Autobiographies', 'An autobiography (from the Greek, αὐτός-autos self + βίος-bios life + γράφειν-graphein to write) is a self-written account of the life of a person. The word "autobiography" was first used deprecatingly by William Taylor in 1797 in the English periodical The Monthly Review, when he suggested the word as a hybrid, but condemned it as "pedantic".'),
+	(5, 'Autobiographies', 'An autobiography  is a self-written account of the life of a person. The word "autobiography" was first used deprecatingly by William Taylor in 1797 in the English periodical The Monthly Review, when he suggested the word as a hybrid, but condemned it as "pedantic".                  '),
 	(6, 'Art', 'Art is a diverse range of human activities in creating visual, auditory or performing artifacts (artworks), expressing the author\'s imaginative or technical skill, intended to be appreciated for their beauty or emotional power'),
 	(7, 'Math', 'Mathematics is the body of knowledge justified by deductive reasoning about abstract structures, starting from axioms and definitions.'),
-	(8, 'Travel', 'A guide book or travel guide is "a book of information about a place designed for the use of visitors or tourists".It will usually include information about sights, accommodation, restaurants, transportation, and activities. Maps of varying detail and historical and cultural information are often included.'),
-	(9, 'Health', 'Health is the level of functional and metabolic efficiency of a living organism. In humans it is the ability of individuals or communities to adapt and self-manage when facing physical, mental, psychological and social changes'),
+	(8, 'Travel', 'In this category you can found A guide book or travel novel '),
 	(10, 'Mystery', 'Mystery fiction is a genre of fiction usually involving a mysterious death or a crime to be solved. In a closed circle of suspects, each suspect must have a credible motive and a reasonable opportunity for committing the crime. The central character must be a detective who eventually solves the mystery by logical deduction from facts fairly presented to the reader'),
 	(11, 'Romance', 'The romance novel or romantic novel discussed in this article is the mass-market literary genre. Novels of this type of genre fiction place their primary focus on the relationship and romantic love between two people, and must have an "emotionally satisfying and optimistic ending.'),
-	(12, 'Self help', 'Self-help or self-improvement is a self-guided improvement[1]—economically, intellectually, or emotionally—often with a substantial psychological basis. Many different self-help group programs exist, each with its own focus, techniques, associated beliefs, proponents and in some cases, leaders. Concepts and terms originating in self-help culture and Twelve-Step culture, such as recovery, dysfunctional families, and codependency have become firmly integrated in mainstream language'),
 	(13, 'Science', 'A science book is a work of nonfiction, usually written by a scientist, researcher, or professor. These books are written for a wide audience presumed to have a general education rather than a specifically scientific training, as opposed to the very narrow audience that a scientific paper would have, and are therefore referred to as popular science.'),
 	(14, 'Action and adventure', 'Adventure refers to action that usually presents danger, or gives the reader a sense of excitement.'),
 	(15, 'Poetry', 'Poetry (the term derives from a variant of the Greek term, poiesis, "making") is a form of literature that uses aesthetic and rhythmic qualities of language—such as phonaesthetics, sound symbolism, and metre—to evoke meanings in addition to, or in place of, the prosaic ostensible meaning.');
 /*!40000 ALTER TABLE `book_categories` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla mvctest.countrys
 CREATE TABLE IF NOT EXISTS `countrys` (
@@ -103,15 +120,264 @@ CREATE TABLE IF NOT EXISTS `countrys` (
   `name` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT 'Name of country (english)',
   PRIMARY KEY (`id_country`),
   UNIQUE KEY `id_country` (`id_country`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Contrys and ISO codes';
+) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Contrys and ISO codes';
 
--- Volcando datos para la tabla mvctest.countrys: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla mvctest.countrys: ~251 rows (aproximadamente)
 /*!40000 ALTER TABLE `countrys` DISABLE KEYS */;
 INSERT INTO `countrys` (`id_country`, `ISO`, `name`) VALUES
 	(0, 'ES', 'Spain'),
 	(1, 'GB', 'United Kingdom'),
-	(2, 'RU', 'Russian Federation');
+	(2, 'RU', 'Russian Federation'),
+	(3, 'US', 'United States'),
+	(4, 'FR', 'France'),
+	(5, 'AS', 'American Samoa'),
+	(6, 'BT', 'Bhutan'),
+	(7, 'GF', 'French Guiana'),
+	(8, 'GP', 'Guadeloupe'),
+	(9, 'MF', 'Saint Martin'),
+	(10, 'VC', 'Saint Vincent and the Grenadines'),
+	(11, 'PM', 'Saint Pierre and Miquelon'),
+	(12, 'BL', 'Saint Barthelemy'),
+	(13, 'DM', 'Dominica'),
+	(14, 'ST', 'Sao Tome and Principe'),
+	(15, 'KP', 'Kore'),
+	(16, 'FK', 'Falkland Islands (Malvinas)'),
+	(17, 'MP', 'Northern Mariana Islands'),
+	(18, 'TL', 'Timor-Leste'),
+	(19, 'BQ', 'Bonair'),
+	(20, 'MM', 'Myanmar'),
+	(21, 'NI', 'Nicaragua'),
+	(22, 'SX', 'Sint Maarten (Dutch part)'),
+	(23, 'GY', 'Guyana'),
+	(24, 'LA', 'Lao People\'s Democratic Republic'),
+	(25, 'CU', 'Cuba'),
+	(26, 'ET', 'Ethiopia'),
+	(27, 'MX', 'Mexico'),
+	(28, 'CA', 'Canada'),
+	(29, 'A1', 'Anonymous Proxy'),
+	(30, 'SY', 'Syrian Arab Republic'),
+	(31, 'CY', 'Cyprus'),
+	(32, 'CZ', 'Czech Republic'),
+	(33, 'IQ', 'Iraq'),
+	(34, 'TR', 'Turkey'),
+	(35, 'RO', 'Romania'),
+	(36, 'LB', 'Lebanon'),
+	(37, 'HU', 'Hungary'),
+	(38, 'GE', 'Georgia'),
+	(39, 'BR', 'Brazil'),
+	(40, 'AZ', 'Azerbaijan'),
+	(41, 'A2', 'Satellite Provider'),
+	(42, 'PS', 'Palestinian Territory'),
+	(43, 'LT', 'Lithuania'),
+	(44, 'OM', 'Oman'),
+	(45, 'SK', 'Slovakia'),
+	(46, 'RS', 'Serbia'),
+	(47, 'FI', 'Finland'),
+	(48, 'IS', 'Iceland'),
+	(49, 'BG', 'Bulgaria'),
+	(50, 'SI', 'Slovenia'),
+	(51, 'MD', 'Moldov'),
+	(52, 'MK', 'Macedonia'),
+	(53, 'LI', 'Liechtenstein'),
+	(54, 'JE', 'Jersey'),
+	(55, 'PL', 'Poland'),
+	(56, 'HR', 'Croatia'),
+	(57, 'BA', 'Bosnia and Herzegovina'),
+	(58, 'EE', 'Estonia'),
+	(59, 'LV', 'Latvia'),
+	(60, 'JO', 'Jordan'),
+	(61, 'KG', 'Kyrgyzstan'),
+	(62, 'RE', 'Reunion'),
+	(63, 'IE', 'Ireland'),
+	(64, 'LY', 'Libya'),
+	(65, 'LU', 'Luxembourg'),
+	(66, 'AM', 'Armenia'),
+	(67, 'VG', 'Virgin Island'),
+	(68, 'YE', 'Yemen'),
+	(69, 'BY', 'Belarus'),
+	(70, 'GI', 'Gibraltar'),
+	(71, 'MQ', 'Martinique'),
+	(72, 'PA', 'Panama'),
+	(73, 'DO', 'Dominican Republic'),
+	(74, 'GU', 'Guam'),
+	(75, 'PR', 'Puerto Rico'),
+	(76, 'VI', 'Virgin Island'),
+	(77, 'MN', 'Mongolia'),
+	(78, 'NZ', 'New Zealand'),
+	(79, 'SG', 'Singapore'),
+	(80, 'ID', 'Indonesia'),
+	(81, 'NP', 'Nepal'),
+	(82, 'PG', 'Papua New Guinea'),
+	(83, 'PK', 'Pakistan'),
+	(84, 'AP', 'Asia/Pacific Region'),
+	(85, 'BS', 'Bahamas'),
+	(86, 'LC', 'Saint Lucia'),
+	(87, 'AR', 'Argentina'),
+	(88, 'BD', 'Bangladesh'),
+	(89, 'TK', 'Tokelau'),
+	(90, 'KH', 'Cambodia'),
+	(91, 'MO', 'Macau'),
+	(92, 'MV', 'Maldives'),
+	(93, 'AF', 'Afghanistan'),
+	(94, 'NC', 'New Caledonia'),
+	(95, 'FJ', 'Fiji'),
+	(96, 'WF', 'Wallis and Futuna'),
+	(97, 'QA', 'Qatar'),
+	(98, 'AL', 'Albania'),
+	(99, 'BZ', 'Belize'),
+	(100, 'UZ', 'Uzbekistan'),
+	(101, 'KW', 'Kuwait'),
+	(102, 'ME', 'Montenegro'),
+	(103, 'PE', 'Peru'),
+	(104, 'BM', 'Bermuda'),
+	(105, 'CW', 'Curacao'),
+	(106, 'CO', 'Colombia'),
+	(107, 'VE', 'Venezuela'),
+	(108, 'CL', 'Chile'),
+	(109, 'EC', 'Ecuador'),
+	(110, 'ZA', 'South Africa'),
+	(111, 'IM', 'Isle of Man'),
+	(112, 'BO', 'Bolivia'),
+	(113, 'GG', 'Guernsey'),
+	(114, 'MT', 'Malta'),
+	(115, 'TJ', 'Tajikistan'),
+	(116, 'SC', 'Seychelles'),
+	(117, 'BH', 'Bahrain'),
+	(118, 'EG', 'Egypt'),
+	(119, 'ZW', 'Zimbabwe'),
+	(120, 'LR', 'Liberia'),
+	(121, 'KE', 'Kenya'),
+	(122, 'GH', 'Ghana'),
+	(123, 'NG', 'Nigeria'),
+	(124, 'TZ', 'Tanzani'),
+	(125, 'ZM', 'Zambia'),
+	(126, 'MG', 'Madagascar'),
+	(127, 'AO', 'Angola'),
+	(128, 'NA', 'Namibia'),
+	(129, 'CI', 'Cote D\'Ivoire'),
+	(130, 'SD', 'Sudan'),
+	(131, 'CM', 'Cameroon'),
+	(132, 'MW', 'Malawi'),
+	(133, 'GA', 'Gabon'),
+	(134, 'ML', 'Mali'),
+	(135, 'BJ', 'Benin'),
+	(136, 'TD', 'Chad'),
+	(137, 'BW', 'Botswana'),
+	(138, 'CV', 'Cape Verde'),
+	(139, 'RW', 'Rwanda'),
+	(140, 'CG', 'Congo'),
+	(141, 'UG', 'Uganda'),
+	(142, 'MZ', 'Mozambique'),
+	(143, 'GM', 'Gambia'),
+	(144, 'LS', 'Lesotho'),
+	(145, 'MU', 'Mauritius'),
+	(146, 'MA', 'Morocco'),
+	(147, 'DZ', 'Algeria'),
+	(148, 'GN', 'Guinea'),
+	(149, 'CD', 'Cong'),
+	(150, 'SZ', 'Swaziland'),
+	(151, 'BF', 'Burkina Faso'),
+	(152, 'SL', 'Sierra Leone'),
+	(153, 'SO', 'Somalia'),
+	(154, 'NE', 'Niger'),
+	(155, 'CF', 'Central African Republic'),
+	(156, 'TG', 'Togo'),
+	(157, 'BI', 'Burundi'),
+	(158, 'GQ', 'Equatorial Guinea'),
+	(159, 'SS', 'South Sudan'),
+	(160, 'SN', 'Senegal'),
+	(161, 'MR', 'Mauritania'),
+	(162, 'DJ', 'Djibouti'),
+	(163, 'KM', 'Comoros'),
+	(164, 'IO', 'British Indian Ocean Territory'),
+	(165, 'TN', 'Tunisia'),
+	(166, 'GL', 'Greenland'),
+	(167, 'VA', 'Holy See (Vatican City State)'),
+	(168, 'CR', 'Costa Rica'),
+	(169, 'KY', 'Cayman Islands'),
+	(170, 'JM', 'Jamaica'),
+	(171, 'GT', 'Guatemala'),
+	(172, 'MH', 'Marshall Islands'),
+	(173, 'AQ', 'Antarctica'),
+	(174, 'BB', 'Barbados'),
+	(175, 'AW', 'Aruba'),
+	(176, 'MC', 'Monaco'),
+	(177, 'AI', 'Anguilla'),
+	(178, 'KN', 'Saint Kitts and Nevis'),
+	(179, 'GD', 'Grenada'),
+	(180, 'PY', 'Paraguay'),
+	(181, 'MS', 'Montserrat'),
+	(182, 'TC', 'Turks and Caicos Islands'),
+	(183, 'AG', 'Antigua and Barbuda'),
+	(184, 'TV', 'Tuvalu'),
+	(185, 'PF', 'French Polynesia'),
+	(186, 'SB', 'Solomon Islands'),
+	(187, 'VU', 'Vanuatu'),
+	(188, 'ER', 'Eritrea'),
+	(189, 'TT', 'Trinidad and Tobago'),
+	(190, 'AD', 'Andorra'),
+	(191, 'HT', 'Haiti'),
+	(192, 'SH', 'Saint Helena'),
+	(193, 'FM', 'Micronesi'),
+	(194, 'SV', 'El Salvador'),
+	(195, 'HN', 'Honduras'),
+	(196, 'UY', 'Uruguay'),
+	(197, 'LK', 'Sri Lanka'),
+	(198, 'EH', 'Western Sahara'),
+	(199, 'CX', 'Christmas Island'),
+	(200, 'WS', 'Samoa'),
+	(201, 'SR', 'Suriname'),
+	(202, 'CK', 'Cook Islands'),
+	(203, 'KI', 'Kiribati'),
+	(204, 'NU', 'Niue'),
+	(205, 'TO', 'Tonga'),
+	(206, 'TF', 'French Southern Territories'),
+	(207, 'YT', 'Mayotte'),
+	(208, 'NF', 'Norfolk Island'),
+	(209, 'BN', 'Brunei Darussalam'),
+	(210, 'TM', 'Turkmenistan'),
+	(211, 'PN', 'Pitcairn Islands'),
+	(212, 'SM', 'San Marino'),
+	(213, 'AX', 'Aland Islands'),
+	(214, 'FO', 'Faroe Islands'),
+	(215, 'SJ', 'Svalbard and Jan Mayen'),
+	(216, 'CC', 'Cocos (Keeling) Islands'),
+	(217, 'NR', 'Nauru'),
+	(218, 'GS', 'South Georgia and the South Sandwich Islands'),
+	(219, 'UM', 'United States Minor Outlying Islands'),
+	(220, 'GW', 'Guinea-Bissau'),
+	(221, 'PW', 'Palau'),
+	(222, 'NL', 'Netherlands'),
+	(223, 'BE', 'Belgium'),
+	(224, 'CH', 'Switzerland'),
+	(225, 'AE', 'United Arab Emirates'),
+	(226, 'IL', 'Israel'),
+	(227, 'UA', 'Ukraine'),
+	(228, 'RU', 'Russian Federation'),
+	(229, 'KZ', 'Kazakhstan'),
+	(230, 'PT', 'Portugal'),
+	(231, 'SA', 'Saudi Arabia'),
+	(232, 'DK', 'Denmark'),
+	(233, 'IR', 'Ira'),
+	(234, 'NO', 'Norway'),
+	(235, 'AT', 'Austria'),
+	(236, 'EU', 'Europe'),
+	(237, 'DE', 'Germany'),
+	(238, 'SE', 'Sweden'),
+	(239, 'IT', 'Italy'),
+	(240, 'AU', 'Australia'),
+	(241, 'CN', 'China'),
+	(242, 'JP', 'Japan'),
+	(243, 'TH', 'Thailand'),
+	(244, 'IN', 'India'),
+	(245, 'MY', 'Malaysia'),
+	(246, 'KR', 'Kore'),
+	(247, 'HK', 'Hong Kong'),
+	(248, 'TW', 'Taiwan'),
+	(249, 'PH', 'Philippines'),
+	(250, 'VN', 'Vietnam');
 /*!40000 ALTER TABLE `countrys` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla mvctest.pages
 CREATE TABLE IF NOT EXISTS `pages` (
@@ -119,18 +385,20 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Title of page',
   `content` mediumtext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contents of page',
   `create_on` datetime NOT NULL COMMENT 'Datetime of creation',
+  `meta_description` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Meta for description',
+  `meta_title` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Meta for title',
   PRIMARY KEY (`id_page`),
   UNIQUE KEY `id_page` (`id_page`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Pages of site';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Pages of site';
 
--- Volcando datos para la tabla mvctest.pages: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla mvctest.pages: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-INSERT INTO `pages` (`id_page`, `title`, `content`, `create_on`) VALUES
-	(1, 'Welcome', '<p>Hello</p>\r\n<p>This is a example of MVC with bootstrap and jquery in php using PDO and CRUD model</p>\r\n<p>Also, contains a simple estructure oriented to single entity model</p>\r\n', '2017-01-10 08:54:32'),
-	(2, 'About', '<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.</p>\r\n<p>We view immigration as being hugely positive for skilled workers and use our professional experience to make a path for them. We accept instructions only from clients about whom we are confident we can obtain the type of entry being sought. We believe in expertise at work and so have different departments for client relations, documentation and legal assistance to make sure each of you are treated as an individual and with due amount of respect and confidentiality. Our consultants leave no stone unturned in our quest to ensure our clients achieve the immigration outcome they are entitled to. Britannia Consultants takes pride in our ability to establish with our clients, long term relationship built on trust, mutual respect and our outstanding service. We view immigration as being hugely positive for skilled workers and use our professional experience to make a path for them.</p>', '2017-03-02 14:28:51'),
-	(3, 'Our Catalog of books', '<p>In our catalog, you can see and consult all our books and filtering by its attributes</p>\r\n<p>There is nothing better than a good book to stimulate the mind, imagination and creativity.</p>\r\n<p>Enjoy¡¡</p>', '2017-04-27 13:57:43');
+INSERT INTO `pages` (`id_page`, `title`, `content`, `create_on`, `meta_description`, `meta_title`) VALUES
+	(1, 'Welcome', '<p>Hello</p>\r\n<p>This is a example of MVC with bootstrap and jquery in php using PDO and CRUD model</p>\r\n<p>Also, contains a simple estructure oriented to single entity model</p>\r\n', '2017-01-10 08:54:32', 'This is a example of MVC', 'Home page'),
+	(2, 'About', '<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.</p>\r\n<p>We view immigration as being hugely positive for skilled workers and use our professional experience to make a path for them. We accept instructions only from clients about whom we are confident we can obtain the type of entry being sought. We believe in expertise at work and so have different departments for client relations, documentation and legal assistance to make sure each of you are treated as an individual and with due amount of respect and confidentiality. Our consultants leave no stone unturned in our quest to ensure our clients achieve the immigration outcome they are entitled to. Britannia Consultants takes pride in our ability to establish with our clients, long term relationship built on trust, mutual respect and our outstanding service. We view immigration as being hugely positive for skilled workers and use our professional experience to make a path for them.</p>', '2017-03-02 14:28:51', 'Information about us', 'About us'),
+	(3, 'Our Catalog of books', '<p>In our catalog, you can see and consult all our books and filtering by its attributes</p>\r\n<p>There is nothing better than a good book to stimulate the mind, imagination and creativity.</p>\r\n<p>Enjoy¡¡</p>', '2017-04-27 13:57:43', 'Our catalog of books', 'Catalog of books'),
+	(4, 'Contact', 'Get in touch', '2017-05-01 12:23:45', 'Contact form and information', 'Contact information');
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
-
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

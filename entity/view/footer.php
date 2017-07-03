@@ -20,7 +20,7 @@
 								</a>
 							</div>
 						</div>
-						<p>&copy;&nbsp <?php echo TE\common\DateFunctions::thisyear() ;?> <?php echo COMPANY;?> <?php echo ALL_RIGHTS;?></p>
+						<p>&copy;&nbsp <?php echo TE\common\DateFunctions::thisyear() ?> <?php echo COMPANY ?> <?php echo ALL_RIGHTS ?></p>
 					</div>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 		<script src="assets/js/wow.min.js"></script>
 		<!-- Datatables -->
 		<script src="assets/js/jquery.dataTables.min.js"></script>
-		<script src="assets/js/dataTables.bootstrap.min.js"></script>
+		<script src="assets/js/dataTables.bootstrap.min.js"></script>		
 		<!-- Custom Theme JavaScript -->
 		<script src="assets/js/custom.js"></script>
 	</body>

@@ -1,4 +1,12 @@
 <?php
+/**
+* This file is = core/common/interfaces/crud.interface.php
+* @author TecnoEstrategia <develop@tecnoestrategia.com>
+* @copyright TecnoEstrategia
+* @license GPL
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @link https://github.com/tecnoestrategia This source code
+**/
 namespace TE\core;
 interface Crud{
   public static function GetAllRecords();
@@ -14,4 +22,3 @@ interface Crud{
   public static function CreateKo($id);
   public static function DeleteKo($id);
 }
-;?>

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="wow bounceInLeft" data-wow-delay="0.1s">
-        <h2><?php echo $ShowPageData->page_title;?></h2>
+        <h2><?php echo $ShowPageData->page_title?></h2>
         </div>
         <div class="col-sm-8">
           <form class="my-form" role="form">

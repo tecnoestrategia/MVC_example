@@ -16,7 +16,7 @@
 
   /**
   * Load TE/core classes
-  * @todo Implements a spl_autoload
+  * @TODO Implements a spl_autoload
   */
 
   require_once 'core/common/class/database.class.php';
@@ -26,11 +26,10 @@
 
   /**
   * constants to conect mysql server
-  * @todo Implements some interface to make N BD connections
+  * @TODO Implements some interface to make N BD connections
   */
   define("database", "mvctest");
   define("host_db", "localhost");
   define("charset_db", "utf8");
   define("database_user", "mvctest");
   define("database_pass", "123456");
-;?>

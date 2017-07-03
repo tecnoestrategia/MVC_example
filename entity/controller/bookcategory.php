@@ -56,7 +56,6 @@ class bookCategoryController{
 
 	//register new category
 	public function NewCategory(){
-		$data = new bookcategory();
 		$data->name = $_REQUEST['name'];
 		$data->desc = $_REQUEST['desc'];
 		$this->model->Create($data);
@@ -81,7 +80,6 @@ class bookCategoryController{
 
 	//modify a existent category
 	public function ModCategory(){
-		$data = new bookcategory();
 		$data->id = $_REQUEST['id'];
 		$data->name = $_REQUEST['name'];
 		$data->desc = $_REQUEST['desc'];
@@ -110,4 +108,3 @@ class bookCategoryController{
 	}
 
 }
-;?>

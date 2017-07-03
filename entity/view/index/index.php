@@ -2,8 +2,8 @@
   <section class="banner" id="home">
   <div class="container">
     <div class="slogan">
-      <h2><?php echo $ShowPageData->page_title;?></h2>
-      <h4><?php echo $ShowPageData->page_content;?></h4>
+      <h2><?php echo $ShowPageData->page_title?></h2>
+      <h4><?php echo $ShowPageData->page_content?></h4>
     </div>
 
     <div class="btn-circle-scroll fadeIn">

@@ -22,7 +22,8 @@ class bookCategory extends \TE\core\DataBase {
     $query =  "
               select
                 book_categories.title as categorytitle,
-                book_categories.id_category as idcategory
+                book_categories.id_category as idcategory,
+                book_categories.description as description
               from
                 book_categories
               order by book_categories.id_category DESC
@@ -145,6 +146,4 @@ class bookCategory extends \TE\core\DataBase {
 			die($e->getMessage());
 		}
   }
-
 }
-;?>

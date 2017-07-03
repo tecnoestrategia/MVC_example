@@ -1,5 +1,13 @@
 <?php
-interface iPaginator {
+/**
+* This file is = core/common/interfaces/paginator.interface.php
+* @author TecnoEstrategia <develop@tecnoestrategia.com>
+* @copyright TecnoEstrategia
+* @license GPL
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @link https://github.com/tecnoestrategia This source code
+**/
+interface Paginator {
     public function __construct($total_count, $count_per_page, $current_page=1);
     public function getPaginationLimiter();
     public function getPaginationHelper();
@@ -17,7 +25,7 @@ interface iPaginator {
 /**
  * Page representation
  */
-interface iPaginatorPage {
+interface PaginatorPage {
     public function __construct($page_number, $start, $end);
 
     public function getNumber();
@@ -29,8 +37,7 @@ interface iPaginatorPage {
 /**
  * Helper for rendering the UI
  */
-interface iPaginationHelper {
-    public function __construct(iPaginator $paginator);
+interface PaginationHelper {
+    public function __construct(Paginator $paginator);
     public function render();
 }
-;?>

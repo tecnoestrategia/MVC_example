@@ -107,6 +107,128 @@ class author extends \TE\core\DataBase {
       }
   }
 
+  public function Create($data){
+    try	{
+      $data->name = $_REQUEST['name'];
+			$data->idcountry = $_REQUEST['idcountry'];
+			$data->borndata = $_REQUEST['borndata'];
+      $data->bio = $_REQUEST['bio'];
+
+      if (isset ($_REQUEST['deathdata'])){
+        $data->deathdata = $_REQUEST['deathdata'];
+      } else {
+        $data->deathdata = NULL;
+      }
+
+			$uploader = new \TE\core\Uploader();
+			$uploader->setDir('data/images/entitys/author/');
+			$uploader->setExtensions(array('jpg','jpeg','png','gif'));
+			$uploader->setMaxSize(.5);
+
+      if($uploader->uploadFile('photo')){
+			    $image  =   $uploader->getUploadName();
+					$data->photo = $image;
+			}else{//upload failed
+			    $uploader->getMessage();
+			}
+
+      $sql = "INSERT INTO author (name,id_country,born_data,death_data,bio,photo)
+              VALUES (?, ?, ?, ?, ?, ? )";
+      $this->pdo->prepare($sql)->execute(array(
+                    $data->name,
+                    $data->idcountry,
+                    $data->borndata,
+                    $data->deathdata,
+                    $data->bio,
+                    $data->photo
+                  )
+                );
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  Public function Delete($id){
+    try {
+      $sql = "DELETE FROM author WHERE author.id_author = $id";
+      $this->pdo->prepare($sql)->execute();
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  Public function Update($data){
+    try {
+
+      $data->idauthor = $_REQUEST['id'];
+      $data->name = $_REQUEST['name'];
+			$data->idcountry = $_REQUEST['idcountry'];
+			$data->borndata = $_REQUEST['borndata'];
+      $data->bio = $_REQUEST['bio'];
+
+      if (isset ($_REQUEST['deathdata'])){
+        $data->deathdata = $_REQUEST['deathdata'];
+      } else {
+        $data->deathdata = NULL;
+      }
+
+      if (is_uploaded_file ($_FILES['photo']['tmp_name'])){
+        $uploader = new \TE\core\Uploader();
+        $uploader->setDir('data/images/entitys/author/');
+        $uploader->setExtensions(array('jpg','jpeg','png','gif'));
+        $uploader->setMaxSize(.5);
+        if($uploader->uploadFile('photo')){
+            $image  =   $uploader->getUploadName();
+            $data->photo = $image;
+        }else{
+            $uploader->getMessage();
+        }
+      } else {
+        //User not set new file, reasigned old filename
+        $data->photo = $_REQUEST['OriginalPhoto'];
+      }
+
+      $sql = "UPDATE author SET
+                name = ?,
+                id_country = ?,
+                born_data = ?,
+                death_data = ?,
+                bio = ?,
+                photo = ?
+              WHERE author.id_author = $data->idauthor ";
+      $this->pdo->prepare($sql)->execute(array(
+                    $data->name,
+                    $data->idcountry,
+                    $data->borndata,
+                    $data->deathdata,
+                    $data->bio,
+                    $data->photo
+                  )
+                );
+
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function ShowListCountrys(){
+    $query = "SELECT
+              countrys.id_country as idcountry,
+              countrys.name as countryname
+            from
+              countrys
+            ORDER BY name ASC
+            ";
+    try	{
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(array($data));
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        }
+    catch (Exception $e){
+        die($e->getMessage());
+        }
+  }
+
   public function CountBooks($id){
 		$query =  "
             select
@@ -125,4 +247,3 @@ class author extends \TE\core\DataBase {
         }
   }
 }
-;?>

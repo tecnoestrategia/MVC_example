@@ -88,4 +88,3 @@ abstract class DataBase{
 		throw new Exception('Class  '.__CLASS__ . 'cannot be cloned');
 	}
  }
-;?>

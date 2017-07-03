@@ -75,5 +75,3 @@ class DateFunctions {
   	return $week;
   }
  }
-
-;?>

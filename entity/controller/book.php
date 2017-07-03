@@ -1,10 +1,5 @@
 <?php
 /**
-* Sumary Instance the model class (entity/model/) to make the diferents views
-* @example When the users invoke some action like this http://yoursite.com/?c=controller&a=some_action, you can see "some_action" its a function of this class
-* The first parameter is index and its fixed in the front controller @see index.php
-*/
-/**
 * @author TecnoEstrategia <develop@tecnoestrategia.com>
 * @copyright TecnoEstrategia
 * @license GPL
@@ -56,31 +51,29 @@ class bookController{
 	    require_once 'entity/view/footer.php';
 	  }
 
+		public function UpdateBook(){
+			$GetListAuthors = $this->model->ShowListAuthors();
+			$GetListCategories = $this->model->ShowListCategories();
+			$BookData = $this->model->ShowBook($_REQUEST['id']);
+			require_once 'entity/view/header.php';
+	    require_once 'entity/view/book/menu.php';
+			require_once 'entity/view/book/update.php';
+	    require_once 'entity/view/footer.php';
+	  }
+
 		public function NewBook($data){
-
-			$data = new book();
-			$data->title = $_REQUEST['title'];
-			$data->idcategory = $_REQUEST['idcategory'];
-			$data->idauthor = $_REQUEST['idauthor'];
-			$data->isbn = $_REQUEST['isbn'];
-			$data->ypublish = $_REQUEST['ypublish'];
-			$data->npages = $_REQUEST['npages'];
-			$data->description = $_REQUEST['description'];
-
-			$uploader = new \TE\core\Uploader();
-			$uploader->setDir('data/images/entitys/books/');
-			$uploader->setExtensions(array('jpg','jpeg','png','gif'));
-			$uploader->setMaxSize(.5);
-
-			if($uploader->uploadFile('cover')){
-			    $image  =   $uploader->getUploadName();
-					$data->cover = $image;
-			}else{//upload failed
-			    $uploader->getMessage();
-			}
-
 			$this->model->Create($data);
 			header('Location: index.php?c=book&a=CreateBookOk');
+	  }
+
+		public function EditBook($data){
+			$this->model->Update($data);
+			header('Location: index.php?c=book&a=UpdateBookOk');
+	  }
+
+		public function DeleteBook(){
+			$this->model->Delete($_REQUEST['id']);
+			header('Location: index.php?c=book&a=DeleteBookOk');
 	  }
 
 		public function CreateBookOk (){
@@ -104,4 +97,3 @@ class bookController{
 	    require_once 'entity/view/footer.php';
 		}
 }
-;?>

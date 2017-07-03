@@ -12,12 +12,6 @@
 namespace TE\entity;
 
 class book extends \TE\core\DataBase {
-  /**
-  * Returns a book obtained from mysql select
-  * @param int $id The id of the book in bd
-  * @return array the fields of the select
-  * @access public
-  */
   public function ShowCatalog(){
     $query =  "
               select
@@ -56,17 +50,16 @@ class book extends \TE\core\DataBase {
                   books.year as year,
                   books.number_of_pages as numberofpages,
                   books.description as description,
+                  books.id_book as idbook,
                   author.name as authorname,
                   author.id_author as idauthor,
                   book_categories.title as categorytitle,
                   book_categories.id_category as idcategory
-                  from
+                from
                   books
                   left join author on (author.id_author = books.id_author)
                   left join book_categories on (book_categories.id_category = books.id_category)
-
-                  WHERE books.id_book = $id
-
+                WHERE books.id_book = $id
                   order by books.year DESC
 										";
 		try	{
@@ -117,7 +110,23 @@ class book extends \TE\core\DataBase {
 
   public function Create ($data){
     try	{
-
+      $data->title = $_REQUEST['title'];
+			$data->idcategory = $_REQUEST['idcategory'];
+			$data->idauthor = $_REQUEST['idauthor'];
+			$data->isbn = $_REQUEST['isbn'];
+			$data->ypublish = $_REQUEST['ypublish'];
+			$data->npages = $_REQUEST['npages'];
+			$data->description = $_REQUEST['description'];
+			$uploader = new \TE\core\Uploader();
+			$uploader->setDir('data/images/entitys/books/');
+			$uploader->setExtensions(array('jpg','jpeg','png','gif'));
+			$uploader->setMaxSize(.5);
+			if($uploader->uploadFile('cover')){
+			    $image  =   $uploader->getUploadName();
+					$data->cover = $image;
+			}else{//upload failed
+			    $uploader->getMessage();
+			}
       $sql = "INSERT INTO books (description,title,id_category,number_of_pages,isbn,id_author,year,photo)
               VALUES (?, ?, ?, ?, ?, ?, ?, ? )";
       $this->pdo->prepare($sql)->execute(array(
@@ -131,6 +140,68 @@ class book extends \TE\core\DataBase {
                     $data->cover
                   )
                 );
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function Update ($data){
+    try	{
+      $data->id = $_REQUEST['id'];
+      $data->title = $_REQUEST['title'];
+      $data->idcategory = $_REQUEST['idcategory'];
+      $data->idauthor = $_REQUEST['idauthor'];
+      $data->isbn = $_REQUEST['isbn'];
+      $data->ypublish = $_REQUEST['ypublish'];
+      $data->npages = $_REQUEST['npages'];
+      $data->description = $_REQUEST['description'];
+
+      if (is_uploaded_file ($_FILES['cover']['tmp_name'])){
+        $uploader = new \TE\core\Uploader();
+        $uploader->setDir('data/images/entitys/books/');
+        $uploader->setExtensions(array('jpg','jpeg','png','gif'));
+        $uploader->setMaxSize(.5);
+        if($uploader->uploadFile('cover')){
+            $image  =   $uploader->getUploadName();
+            $data->cover = $image;
+        }else{
+            $uploader->getMessage();
+        }
+      }else{
+        //User not set new file, reasigned old filename
+        $data->cover = $_REQUEST['OriginalCover'];
+      }
+
+      $sql = "UPDATE books SET
+                title = ?,
+                description = ?,
+                id_category = ?,
+                number_of_pages = ?,
+                isbn = ?,
+                id_author = ?,
+                year = ?,
+                photo = ?
+              WHERE books.id_book = $data->id";
+      $this->pdo->prepare($sql)->execute(array(
+                    $data->title,
+                    $data->description,
+                    $data->idcategory,
+                    $data->npages,
+                    $data->isbn,
+                    $data->idauthor,
+                    $data->ypublish,
+                    $data->cover
+                  )
+                );
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function Delete($id){
+    try {
+      $sql = "DELETE FROM books WHERE books.id_book = $id";
+      $this->pdo->prepare($sql)->execute();
     } catch (Exception $e) {
       die($e->getMessage());
     }

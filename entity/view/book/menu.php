@@ -1,8 +1,5 @@
 <?php
 /**
-* This class its for common operations about date and time, etc
-*/
-/**
 * @author TecnoEstrategia <develop@tecnoestrategia.com>
 * @copyright TecnoEstrategia
 * @license GPL
@@ -23,24 +20,24 @@
 						<span class="icon-bar"></span>
 					</button>
 					<div class="navbar-brand">
-						<a href="#"><?php echo TITLE;?></a>
+						<a href="#"><?php echo TITLE?></a>
 					</div>
 				</div>
 				<!-- Collect the nav links and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="dropdown-box-1">
 					<ul class="nav navbar-nav">
-						<li><a href="?c=index"><?php echo MENU_HOME;?></a></li>
-						<li><a href="?c=about"><?php echo MENU_ABOUT;?></a></li>
+						<li><a href="?c=index"><?php echo MENU_HOME?></a></li>
+						<li><a href="?c=about"><?php echo MENU_ABOUT?></a></li>
 						<li class="dropdown active" role="presentation">
-							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo MENU_BOOK_ENTITY;?> <span class="caret"></span>
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo MENU_BOOK_ENTITY?> <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu bullet fadeIn" role="menu">
-							 <li class="active"><a href="?c=book"><?php echo MENU_BOOK_ALL;?></a></li>
- 							 <li><a href="?c=bookcategory"><?php echo MENU_BOOK_CATEGORIES;?></a></li>
- 							 <li><a href="?c=author"><?php echo MENU_BOOK_AUTHORS;?></a></li>
+							 <li class="active"><a href="?c=book"><?php echo MENU_BOOK_ALL?></a></li>
+ 							 <li><a href="?c=bookcategory"><?php echo MENU_BOOK_CATEGORIES?></a></li>
+ 							 <li><a href="?c=author"><?php echo MENU_BOOK_AUTHORS?></a></li>
 							</ul>
 						</li>
-						<li><a href="?c=contact"><?php echo MENU_CONTACT;?></a></li>
+						<li><a href="?c=contact"><?php echo MENU_CONTACT?></a></li>
 					</ul>
 				</div>
 			</div> <!-- /.container -->

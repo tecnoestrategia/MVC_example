@@ -1,4 +1,2 @@
 <?php
 namespace TE\common;
-
- ;?>

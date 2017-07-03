@@ -1,6 +1,6 @@
 <?php
 /**
-* This file is = core/common/pages.class.php
+* This file is = core/common/class/pages.class.php
 * @author TecnoEstrategia <develop@tecnoestrategia.com>
 * @copyright TecnoEstrategia
 * @license GPL
@@ -9,7 +9,7 @@
 **/
 namespace TE\core;
 
-class pages extends \TE\core\DataBase {
+class pages extends DataBase {
   public function ShowPage($id){
     $query =  "
         select

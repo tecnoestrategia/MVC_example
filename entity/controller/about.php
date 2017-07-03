@@ -31,5 +31,4 @@ class aboutController{
 		require_once 'entity/view/about/index.php';
     require_once 'entity/view/footer.php';
     }
-};
-?>
+}
