@@ -14,23 +14,10 @@
 namespace TE\core;
 
 abstract class DataBase{
-	/**
-	* Establish the mysql connection
-	*/
-	/**
-	* @return array DataBase connection
-	* @access private
-	*/
+
 	  protected static $pdo = null;
 
 	   final private function Connect()	{
-			/**
-			* Establish the mysql connection
-			*/
-			/**
-	 		* @return array DataBase connection
-	 		* @access private
-	 		*/
 			$pdo = new \PDO('mysql:host='.host_db.';dbname='.database.';charset='.charset_db, database_user, database_pass);
 			$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			return $pdo;

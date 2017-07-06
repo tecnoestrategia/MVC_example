@@ -8,5 +8,3 @@
 * @link https://github.com/tecnoestrategia This source code
 **/
 namespace TE\core;
-
-?>
