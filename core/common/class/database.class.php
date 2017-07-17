@@ -24,13 +24,6 @@ abstract class DataBase{
 		}
 
 	  public function __CONSTRUCT(){
-			/**
-			* Public constructor, chek if private method Connect exist.
-			*/
-			/**
-	 		* @return array  All options
-	 		* @access public
-	 		*/
 			try	 {
 				if (self::$pdo === null) {
 					$this->pdo = DataBase::Connect();
@@ -43,35 +36,14 @@ abstract class DataBase{
 		}
 
 	public function __wakeup(){
-		/**
-		* Don't unserialized
-		*/
-		/**
-		* @return string Error message
-		* @access public
-		*/
-        throw new Exception('Class  '.__CLASS__ . 'cannot be unserialized');
+		  throw new Exception('Class  '.__CLASS__ . 'cannot be unserialized');
 		}
 
-    public function __sleep(){
-			/**
-			* Don't serialized
-			*/
-			/**
-			* @return string Error message
-			* @access public
-			*/
-        throw new Exception('Class  '.__CLASS__ . 'cannot be serialized');
+  public function __sleep(){
+		  throw new Exception('Class  '.__CLASS__ . 'cannot be serialized');
 		}
 
 	public function __clone(){
-		/**
-		* To not allowed clone
-		*/
-		/**
-		* @return string Error message
-		* @access public
-		*/
 		throw new Exception('Class  '.__CLASS__ . 'cannot be cloned');
 	}
  }

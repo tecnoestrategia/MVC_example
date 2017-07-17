@@ -56,8 +56,6 @@ class bookCategoryController{
 
 	//register new category
 	public function NewCategory(){
-		$data->name = $_REQUEST['name'];
-		$data->desc = $_REQUEST['desc'];
 		$this->model->Create($data);
 		header('Location: index.php?c=bookcategory&a=CreateCategoryOk');
 	}
@@ -80,9 +78,6 @@ class bookCategoryController{
 
 	//modify a existent category
 	public function ModCategory(){
-		$data->id = $_REQUEST['id'];
-		$data->name = $_REQUEST['name'];
-		$data->desc = $_REQUEST['desc'];
 		$this->model->Update($data);
 		header('Location: index.php?c=bookcategory&a=UpdateCategoryOk');
 	}
