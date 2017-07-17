@@ -110,6 +110,8 @@ class bookCategory extends \TE\core\DataBase {
   }
 
   public function Create($data){
+    $data->name = $_REQUEST['name'];
+		$data->desc = $_REQUEST['desc'];
     try	{
 			$sql = "INSERT INTO book_categories (title,description) VALUES (?, ?)";
 			$this->pdo->prepare($sql)->execute(array(
@@ -132,6 +134,9 @@ class bookCategory extends \TE\core\DataBase {
   }
 
   public function Update($data){
+    $data->id = $_REQUEST['id'];
+		$data->name = $_REQUEST['name'];
+		$data->desc = $_REQUEST['desc'];
     try	{
 			$sql = "UPDATE book_categories SET
                 title = ?,
