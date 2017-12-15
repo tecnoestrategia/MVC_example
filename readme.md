@@ -10,7 +10,7 @@ This is a example of MVC (Model View Controller architecture pattern) in [php] w
 
 Also, this example is oriented with interfaces, namespaces, etc to explain a concept of CRUD aplications in modern php.
 
-In the best way, that be used the most [PSR] fix, well as fas as possible (this not a example of standard).
+In the best way, that be used the most [PSR] fix, well as far as possible (this not a example of standard).
 
 [PSR]: <http://www.php-fig.org/>
 [PHP]: <http://www.php.net/>
