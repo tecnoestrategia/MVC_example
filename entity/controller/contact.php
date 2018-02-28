@@ -21,17 +21,16 @@ require_once 'entity/model/contact.php';
 class contactController{
 	private $model;
 	public function __CONSTRUCT(){
-    $this->model = new contact();
+    	$this->model = new contact();
     }
-  public function Index(){
+  	public function Index(){
 		$ShowPageData = $this->model->ShowPage();
 		require_once 'entity/view/header.php';
-    require_once 'entity/view/contact/menu.php';
+    		require_once 'entity/view/contact/menu.php';
 		require_once 'entity/view/contact/index.php';
-    require_once 'entity/view/footer.php';
-  }
-
+    		require_once 'entity/view/footer.php';
+  	}
+	
 	public function SendFrom(){
-
 	}
 }
