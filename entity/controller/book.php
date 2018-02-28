@@ -34,21 +34,21 @@ class bookController{
 	//actions invoke in ?c=book&a=GetBookById=$id
 	public function GetBookById(){
 		if(isset($_REQUEST['id'])){
-            $BookData = $this->model->ShowBook($_REQUEST['id']);
-        }
-    require_once 'entity/view/header.php';
-    require_once 'entity/view/book/menu.php';
+            		$BookData = $this->model->ShowBook($_REQUEST['id']);
+       		 }
+    		require_once 'entity/view/header.php';
+    		require_once 'entity/view/book/menu.php';
 		require_once 'entity/view/book/book.php';
-    require_once 'entity/view/footer.php';
+    		require_once 'entity/view/footer.php';
     }
 
 		public function CreateBook(){
 			$GetListAuthors = $this->model->ShowListAuthors();
 			$GetListCategories = $this->model->ShowListCategories();
 			require_once 'entity/view/header.php';
-	    require_once 'entity/view/book/menu.php';
+	    		require_once 'entity/view/book/menu.php';
 			require_once 'entity/view/book/create.php';
-	    require_once 'entity/view/footer.php';
+	    		require_once 'entity/view/footer.php';
 	  }
 
 		public function UpdateBook(){
@@ -56,9 +56,9 @@ class bookController{
 			$GetListCategories = $this->model->ShowListCategories();
 			$BookData = $this->model->ShowBook($_REQUEST['id']);
 			require_once 'entity/view/header.php';
-	    require_once 'entity/view/book/menu.php';
+	   		require_once 'entity/view/book/menu.php';
 			require_once 'entity/view/book/update.php';
-	    require_once 'entity/view/footer.php';
+	   		require_once 'entity/view/footer.php';
 	  }
 
 		public function NewBook($data){
@@ -78,22 +78,22 @@ class bookController{
 
 		public function CreateBookOk (){
 			require_once 'entity/view/header.php';
-	    require_once 'entity/view/book/menu.php';
+	    		require_once 'entity/view/book/menu.php';
 			require_once 'entity/view/book/createok.php';
-	    require_once 'entity/view/footer.php';
+	    		require_once 'entity/view/footer.php';
 		}
 
 		public function UpdateBookOk (){
 			require_once 'entity/view/header.php';
-	    require_once 'entity/view/book/menu.php';
+	    		require_once 'entity/view/book/menu.php';
 			require_once 'entity/view/book/updateok.php';
-	    require_once 'entity/view/footer.php';
+	    		require_once 'entity/view/footer.php';
 		}
 
 		public function DeleteBookOk (){
 			require_once 'entity/view/header.php';
-	    require_once 'entity/view/book/menu.php';
+	    		require_once 'entity/view/book/menu.php';
 			require_once 'entity/view/book/deleteok.php';
-	    require_once 'entity/view/footer.php';
+	    		require_once 'entity/view/footer.php';
 		}
 }
