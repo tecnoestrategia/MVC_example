@@ -21,8 +21,17 @@
 	{
 		$FrontController = strtolower($_REQUEST['c']);
 		$action = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Index';
-		require_once "entity/controller/$FrontController.php";
-		$controller = 'TE\entity\\'.ucwords($FrontController) . 'Controller';
-    $controller = new $controller;
-		call_user_func(array($controller,$action));
+		$RealPath = "entity/controller/$FrontController.php";
+		if (file_exists($RealPath)){
+			require_once $RealPath;
+			$controller = 'TE\entity\\'.ucwords($FrontController) . 'Controller';
+			$controller = new $controller;
+			call_user_func(array($controller,$action));
+		} else {
+			$controller = 'index';
+			require_once "entity/controller/$controller.php";
+			$controller = 'TE\entity\\'.ucwords($controller) . 'Controller';
+			$controller = new $controller;
+			$controller->Index();
+		}			
 	}
